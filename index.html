@@ -59,6 +59,30 @@
 @media(max-width:850px){.room-card:hover,.gallery-item:hover,.intro-photo:hover img,.experience-photo:hover img{transform:none}.room-card:hover img,.gallery-item:hover img{transform:scale(1.02)}}
 @media(prefers-reduced-motion:reduce){.hero .eyebrow,.hero h1,.hero p,.hero-actions,.section-head h2,.intro-copy h2,.experience-copy h2,.location-grid h2,.cta-band h2{animation:none!important}.room-card,.gallery-item,.btn,.brand-mark,.feature,.experience-row,.intro-photo img,.room-card img,.experience-photo img{transition:none!important}}
 
+
+/* Enhanced cinematic motion layer */
+.hero{isolation:isolate}
+.hero-img{transform-origin:center center;will-change:transform}
+.hero h1 em{background:linear-gradient(110deg,#f4e5b8 0%,#c6a76a 38%,#fff0c5 52%,#c6a76a 72%,#f4e5b8 100%);background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:goldFlow 7s linear infinite}
+.eyebrow{display:inline-block}
+.section-head .eyebrow,.intro-copy .eyebrow,.experience-grid .eyebrow,.location-grid .eyebrow{transition:letter-spacing .5s}
+.reveal.visible .eyebrow{letter-spacing:.28em}
+.reveal{will-change:opacity,transform}
+.reveal.visible{animation:revealDepth .85s cubic-bezier(.2,.75,.25,1) both}
+.room-card,.gallery-item,.feature,.experience-row,.detail{transform-style:preserve-3d}
+.room-card:hover .room-copy{transform:translateZ(10px)}
+.room-copy{transition:transform .4s}
+.gallery-item:before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(135deg,#ffffff16,transparent 40%,#17251e18);opacity:0;transition:opacity .4s}
+.gallery-item:hover:before{opacity:1}
+.btn:after{content:"";position:absolute;inset:-30% auto -30% -45%;width:28%;transform:skewX(-22deg);background:#ffffff65;transition:left .65s ease;z-index:-1}
+.btn:hover:after{left:130%}
+.brand-name{transition:letter-spacing .35s}
+.brand:hover .brand-name{letter-spacing:.09em}
+@keyframes goldFlow{to{background-position:220% center}}
+@keyframes revealDepth{from{opacity:0;transform:translateY(26px) scale(.985);filter:blur(3px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@media(max-width:850px){.room-card:hover .room-copy{transform:none}}
+@media(prefers-reduced-motion:reduce){.hero h1 em{animation:none;background:none;color:#e0c78e}.reveal.visible{animation:none}}
+
 </style>
 </head>
 <body>
@@ -158,6 +182,28 @@ if (window.matchMedia('(hover:hover) and (pointer:fine)').matches && !window.mat
       card.style.transform = 'perspective(900px) rotateY(' + (x * 3) + 'deg) rotateX(' + (y * -2.5) + 'deg) translateY(-3px)';
     });
     card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+  });
+}
+
+
+// Subtle cinematic hero parallax and staggered reveal timing.
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const hero = document.querySelector('.hero');
+  const heroImage = document.querySelector('.hero-img');
+  let parallaxTick = false;
+  window.addEventListener('scroll', () => {
+    if (parallaxTick) return;
+    parallaxTick = true;
+    window.requestAnimationFrame(() => {
+      if (hero && heroImage && window.innerWidth > 700) {
+        const offset = Math.min(45, Math.max(-20, window.scrollY * .12));
+        if (window.scrollY < hero.offsetHeight) heroImage.style.translate = '0 ' + offset + 'px';
+      }
+      parallaxTick = false;
+    });
+  }, {passive:true});
+  document.querySelectorAll('.feature,.experience-row,.detail').forEach((el,i) => {
+    el.style.transitionDelay = (i % 4) * 55 + 'ms';
   });
 }
 
