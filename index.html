@@ -17,6 +17,48 @@
 @media(max-width:850px){.navlinks{display:none;position:absolute;top:78px;left:0;right:0;background:var(--paper);padding:20px 24px 25px;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:18px}.navlinks.open{display:flex}.navlinks .btn{width:100%}.menu-toggle{display:block}.nav-cta{display:none}.hero{min-height:680px}.hero-content{padding:85px 0 115px}.hero-note{display:none}.booking-card{grid-template-columns:1fr 1fr}.field:nth-child(2){border-right:0}.field:nth-child(3){border-top:1px solid var(--line)}.booking-submit{grid-column:span 2;margin:12px}.section{padding:78px 0}.intro-grid,.experience-grid,.location-grid{grid-template-columns:1fr;gap:38px}.intro-photo{max-width:620px}.intro-photo img{height:440px}.feature-grid{grid-template-columns:1fr 1fr;row-gap:22px}.feature:nth-child(2){border:0}.room-grid{grid-template-columns:1fr 1fr}.room-card img,.room-card:first-child img{height:280px}.room-copy{padding:20px}.gallery-grid{grid-template-rows:180px 180px}.experience-photo img{height:420px}.footer-grid{grid-template-columns:1fr 1fr}.footer-grid>div:first-child{grid-column:span 2}}
 @media(max-width:560px){.container{width:calc(100% - 32px)}.announcement{font-size:.58rem;letter-spacing:.1em}.nav{min-height:70px}.navlinks{top:70px}.brand-name{font-size:1.05rem}.brand-mark{width:34px;height:34px}.hero{min-height:650px}.hero:before{background:linear-gradient(0deg,rgba(10,20,15,.78),rgba(10,20,15,.16) 100%)}.hero-img{object-position:55% center}.hero-content{padding:90px 0 90px}.hero h1{font-size:clamp(3.2rem,15vw,5rem)}.hero p{font-size:.91rem}.hero-actions .btn{width:100%}.bookingbar{margin-top:-24px}.booking-card{grid-template-columns:1fr}.field{border-right:0;border-bottom:1px solid var(--line);padding:13px 17px}.field:nth-child(2){border-bottom:1px solid var(--line)}.field:nth-child(3){border-top:0}.booking-submit{grid-column:auto;width:calc(100% - 20px)}.section{padding:65px 0}.section-head{margin-bottom:30px}.section-head h2{font-size:2.8rem}.intro-photo{padding-left:18px;padding-bottom:25px}.intro-photo img{height:370px}.photo-caption{font-size:1rem;padding:12px 15px}.feature-grid{gap:20px 8px}.feature{padding:0 6px;gap:9px}.feature-icon{font-size:1.1rem}.feature strong{font-size:.74rem}.feature small{font-size:.66rem}.room-grid{grid-template-columns:1fr}.room-card img,.room-card:first-child img{height:300px}.room-copy h3{font-size:1.6rem}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:220px 155px 155px;gap:8px}.gallery-item:first-child{grid-column:span 2;grid-row:auto}.gallery-item:after{font-size:.57rem;right:6px;bottom:6px;padding:6px 8px}.experience-photo img{height:350px}.map-frame{height:300px}.footer-grid{grid-template-columns:1fr;gap:24px}.footer-grid>div:first-child{grid-column:auto}.copyright{flex-direction:column;gap:6px}.cta-band{padding:65px 0}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+/* Motion design: animated typography + restrained 3D depth */
+.hero .eyebrow{animation:fadeSlideUp .8s .12s both}
+.hero h1{animation:fadeSlideUp 1s .24s both;text-shadow:0 8px 34px #0005}
+.hero p{animation:fadeSlideUp .9s .42s both}
+.hero-actions{animation:fadeSlideUp .9s .58s both}
+.section-head h2,.intro-copy h2,.room-copy h3,.experience-copy h2,.location-grid h2,.cta-band h2{ text-wrap:balance }
+.section-head h2,.intro-copy h2,.experience-copy h2,.location-grid h2,.cta-band h2{animation:softTextReveal .9s both}
+.reveal.visible .section-head h2,.reveal.visible h2,.reveal.visible h3{animation:softTextReveal .8s both}
+.brand-mark{transition:transform .55s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.brand:hover .brand-mark{transform:rotateY(180deg) scale(1.08);box-shadow:0 5px 22px #c6a76a35}
+.btn{position:relative;isolation:isolate;overflow:hidden;box-shadow:0 5px 0 #101b1510;transition:transform .28s,box-shadow .28s,background .25s}
+.btn:hover{transform:translateY(-4px) perspective(700px) rotateX(2deg);box-shadow:0 12px 24px #101b1524}
+.btn:active{transform:translateY(-1px) scale(.99)}
+.intro-photo,.room-card,.gallery-item,.experience-photo{transform-style:preserve-3d;perspective:1000px}
+.intro-photo img,.room-card img,.experience-photo img{transition:transform .7s cubic-bezier(.2,.75,.25,1),filter .7s;will-change:transform}
+.intro-photo:hover img{transform:rotateY(-2deg) rotateX(1.5deg) scale(1.015);filter:saturate(1.06)}
+.room-card{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s;box-shadow:0 2px 0 #17251e08}
+.room-card:hover{transform:translateY(-8px) rotateX(1deg);box-shadow:0 24px 48px #17251e18}
+.room-card:hover img{transform:scale(1.035)}
+.gallery-item{transition:transform .4s,box-shadow .4s;backface-visibility:hidden}
+.gallery-item:hover{transform:translateY(-4px) perspective(900px) rotateX(1deg);box-shadow:0 18px 30px #17251e25;z-index:1}
+.gallery-item:hover img{transform:scale(1.075)}
+.feature{transition:transform .35s}
+.feature:hover{transform:translateY(-4px)}
+.feature-icon{display:inline-block;transition:transform .45s}
+.feature:hover .feature-icon{transform:translateY(-3px) rotateY(20deg) scale(1.12)}
+.experience-photo:hover img{transform:scale(1.025) rotateY(1deg)}
+.experience-row{transition:padding-left .3s,background .3s}
+.experience-row:hover{padding-left:9px;background:#ffffff45}
+.experience-row span{display:inline-block;transition:transform .35s}
+.experience-row:hover span{transform:translateX(4px) scale(1.08)}
+.photo-caption{box-shadow:0 12px 30px #17251e22;transform:translateZ(22px)}
+.booking-card{transition:transform .45s,box-shadow .45s;transform-style:preserve-3d}
+.booking-card:focus-within{transform:translateY(-3px);box-shadow:0 24px 58px #15251b26}
+.map-frame{transition:filter .5s,transform .5s}
+.map-frame:hover{filter:grayscale(0);transform:perspective(900px) rotateX(1deg)}
+@keyframes fadeSlideUp{from{opacity:0;transform:translate3d(0,24px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes softTextReveal{from{opacity:0;transform:translate3d(0,18px,0);letter-spacing:-.055em}to{opacity:1;transform:translate3d(0,0,0);letter-spacing:inherit}}
+@media(max-width:850px){.room-card:hover,.gallery-item:hover,.intro-photo:hover img,.experience-photo:hover img{transform:none}.room-card:hover img,.gallery-item:hover img{transform:scale(1.02)}}
+@media(prefers-reduced-motion:reduce){.hero .eyebrow,.hero h1,.hero p,.hero-actions,.section-head h2,.intro-copy h2,.experience-copy h2,.location-grid h2,.cta-band h2{animation:none!important}.room-card,.gallery-item,.btn,.brand-mark,.feature,.experience-row,.intro-photo img,.room-card img,.experience-photo img{transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -105,5 +147,19 @@ document.getElementById('year').textContent=new Date().getFullYear();
 const menuToggle=document.getElementById('menuToggle'),navlinks=document.getElementById('navlinks');menuToggle.addEventListener('click',()=>{const open=navlinks.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(open));menuToggle.textContent=open?'×':'☰'});navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navlinks.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰'}));
 const modal=document.getElementById('photoModal'),modalImage=document.getElementById('modalImage');document.querySelectorAll('.gallery-item').forEach(b=>b.addEventListener('click',()=>{modalImage.src=b.dataset.image;modal.classList.add('open');document.body.style.overflow='hidden'}));function closeModal(){modal.classList.remove('open');document.body.style.overflow='';modalImage.src=''}document.getElementById('closeModal').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'))}
+
+// Lightweight pointer tilt on larger screens; disabled for touch and reduced-motion users.
+if (window.matchMedia('(hover:hover) and (pointer:fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('.room-card, .gallery-item').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5;
+      const y = (e.clientY - r.top) / r.height - .5;
+      card.style.transform = 'perspective(900px) rotateY(' + (x * 3) + 'deg) rotateX(' + (y * -2.5) + 'deg) translateY(-3px)';
+    });
+    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+  });
+}
+
 </script>
 </body></html>
